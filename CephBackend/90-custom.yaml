@@ -1,0 +1,28 @@
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    lo:
+      match:
+        name: lo
+      addresses:
+        - 127.0.0.1/8
+      dhcp4: no
+      dhcp6: no
+
+    eth1:
+      addresses:
+        - 10.0.0.14/24
+      nameservers:
+        addresses:
+          - 8.8.8.8
+      dhcp4: no
+      dhcp6: no
+
+    eth2:
+      dhcp4: no
+      dhcp6: no
+      optional: true
+      # Manual configuration (no IP address assigned)
+      # The 'up' and 'down' commands are not directly translatable in netplan,
+      # but setting 'optional: true' ensures the interface is not required for boot.
