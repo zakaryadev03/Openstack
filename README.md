@@ -5,4 +5,6 @@ the scripts provided cover almost everything, the only thing remainging is modif
 
 Steps to deploy:
 
-# Vagrant up
+`Vagrant up` to start the 6 Vms (Controller, compute{1..2} and ceph{1..3})
+
+it will take sometime to complete the provision scripts in setup folder, those scripts just install the necessary tools for ansible and ceph and configure the network interfaces.
