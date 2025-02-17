@@ -1,14 +1,15 @@
 #! /bin/sh
 
-sudo cp /vagrant/60-custom.yaml /etc/netplan/60-custom.yaml
+sudo cp /vagrant/network_config/100-custom.yaml /etc/netplan/60-custom.yaml
 sudo chmod 600 /etc/netplan/60-custom.yaml
-sudo cp /vagrant/99-disable-network-config.cfg /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+sudo cp /vagrant/network_config/99-disable-network-config.cfg /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
 sudo netplan generate
 sudo netplan apply
-sudo cp /vagrant/hosts /etc/hosts
-sudo cp /vagrant/grub /etc/default/grub
+sudo cp /vagrant/network_config/hosts /etc/hosts
+sudo cp /vagrant/network_config/grub /etc/default/grub
 
 sudo update-grub
+sudo timedatectl set-timezone Africa/Casablanca
 
 sudo apt update -y
 sudo apt upgrade -y
@@ -38,28 +39,20 @@ sudo apt-get update -y
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 sudo systemctl start docker
 sudo systemctl enable docker
+sudo systemctl restart docker
+sudo systemctl enable docker
 
 sudo apt install -y git python3-dev libffi-dev gcc libssl-dev pkg-config libdbus-glib-1-dev build-essential cmake libglib2.0-dev mariadb-server
 
-sudo apt install -y python3-venv
-
-mkdir openstack
-cd openstack
-python3 -m venv .
-. bin/activate
+sudo apt install python3-pip -y
 pip install --upgrade pip
 pip install setuptools docker dbus-python
+sudo apt-get install python3-rbd -y
+sudo apt-get install ceph-common -y
 
-sudo pvcreate /dev/sdc
-sudo vgcreate cinder-volumes /dev/sdc
 
 echo "configfs" >> /etc/modules
 update-initramfs -u
 sudo systemctl daemon-reload
-
-mkdir -p /home/vagrant/kolla
-cp /vagrant/globals.yml /home/vagrant/kolla
-cp /vagrant/run-kolla.sh /home/vagrant/kolla
-cp /vagrant/init-runonce /home/vagrant/kolla
 
 reboot

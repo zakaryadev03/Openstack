@@ -1,6 +1,19 @@
 #! /bin/sh
 
-# Install necessary packages
+sudo cp /vagrant/network_config/80-custom.yaml /etc/netplan/60-custom.yaml
+sudo chmod 600 /etc/netplan/60-custom.yaml
+sudo cp /vagrant/network_config/99-disable-network-config.cfg /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+sudo netplan generate
+sudo netplan apply
+sudo cp /vagrant/network_config/hosts /etc/hosts
+sudo cp /vagrant/network_config/grub /etc/default/grub
+
+sudo update-grub
+sudo timedatectl set-timezone Africa/Casablanca
+
+sudo apt update -y
+sudo apt upgrade -y
+
 sudo apt-get install -y ca-certificates curl
 
 # Create the directory for Docker's GPG key
@@ -23,3 +36,7 @@ sudo apt-get update -y
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 sudo systemctl start docker
 sudo systemctl enable docker
+sudo systemctl restart docker
+sudo systemctl enable docker
+
+reboot
