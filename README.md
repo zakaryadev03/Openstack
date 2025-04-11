@@ -4,13 +4,14 @@ You can access the project full report using this link:
 
 Repo about deploying multinodes openstack with an external ceph cluster as backend.
 
-Openstack Topology
+## Openstack Topology
 ![Openstack topology](assets/Openstack_server.drawio.png)
 
-Ceph_topology
+## Ceph Topology
 ![Ceph topology](assets/ceph_cluster.drawio.png)
 
-Ip_allocation
-![Ip_allocation](assets/Ip_allocation.drawio.png)
+## IP Allocation
+![IP allocation](assets/Ip_allocation.drawio.png)
+
 
 the scripts contain the complete setup to deploy openstack with external ceph cluster as backend.
