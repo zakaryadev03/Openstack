@@ -4,7 +4,10 @@ You can access the project full report using this link:
 
 Repo about deploying multinodes openstack with an external ceph cluster as backend.
 
-Openstack node: 1 Controller node - 2 Compute nodes.
-Ceph cluster: 1 admin, 2 nodes.
+![Openstack topology](assets/Openstack_server.drawio.png)
+
+![Ceph topology](assets/ceph_cluster.drawio.png)
+
+![Ip_allocation](assets/Ip_allocation.drawio.png)
 
 the scripts contain the complete setup to deploy openstack with external ceph cluster as backend.
